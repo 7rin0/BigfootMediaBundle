@@ -13,7 +13,6 @@ $(function() {
             per_page  = container.data('per-page'),
             page      = link.data('page');
 
-
         function refresh () {
                 var
                     tmpl  = $('<li><a href="#_" data-action="paginate"></a></li>'),

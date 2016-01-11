@@ -5,7 +5,6 @@
  */
 namespace Bigfoot\Bundle\MediaBundle\Form\Common;
 
-
 abstract class AbstractPortfolioSearchData
 {
     /**

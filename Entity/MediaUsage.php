@@ -68,7 +68,6 @@ class MediaUsage
         $this->translations    = new ArrayCollection();
     }
 
-
     /**
      * Get id
      *
