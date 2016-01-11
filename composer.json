@@ -1,5 +1,5 @@
 {
-    "name": "bigfoot/media-bundle",
+    "name": "7rin0/bigfoot-media-bundle",
     "type": "symfony-bundle",
     "description": "Bigfoot media bundle",
     "keywords": [],
@@ -8,10 +8,14 @@
         {
             "name": "Guillaume Manen",
             "email": "g.manen@c2is.fr"
+        },
+        {
+            "name": "Luis SEVERINO",
+            "email": "lfs.severino@gmail.com"
         }
     ],
     "require": {
-        "bigfoot/core-bundle": "~3.0"
+        "bigfoot/core-bundle": "~4.0"
     },
     "autoload": {
         "psr-0": { "Bigfoot\\Bundle\\MediaBundle": "" }
@@ -20,8 +24,7 @@
     "minimum-stability": "dev",
     "extra": {
         "branch-alias": {
-            "dev-master": "3.0.x-dev",
-            "dev-2.2": "2.2.x-dev"
+            "dev-master": "4.0.x-dev"
         }
     }
 }

@@ -5,20 +5,20 @@ services:
     form.type.portfolio_search:
         class: Bigfoot\Bundle\MediaBundle\Form\PortfolioSearchType
         tags:
-            - { name: form.type, alias: bigfoot_portfolio_search }
+            - { name: form.type }
 
     bigfoot.form.type.bigfoot_media_mediatype:
         class: Bigfoot\Bundle\MediaBundle\Form\MediaType
         arguments: [ '@doctrine.orm.entity_manager' ]
         tags:
-            - { name: form.type, alias: bigfoot_media_mediatype }
+            - { name: form.type }
 
     bigfoot.form.type.bigfoot_media:
         class: %bigfoot.form.type.bigfoot_media.class%
         calls:
             - ['setProvider', ['@bigfoot_media.provider.media']]
         tags:
-            - { name: form.type, alias: bigfoot_media }
+            - { name: form.type }
 
     bigfoot.twig.medias_extension:
         class: Bigfoot\Bundle\MediaBundle\Twig\MediasExtension
