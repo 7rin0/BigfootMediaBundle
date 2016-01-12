@@ -7,6 +7,7 @@ use Doctrine\ORM\EntityManager;
 
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 use Bigfoot\Bundle\CoreBundle\Theme\Theme;

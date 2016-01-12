@@ -92,7 +92,7 @@ class MediaProvider extends AbstractMediaProvider
     public function getMediaDetails(RequestStack $requestStack, $media)
     {
         return  array(
-            'file'   => $this->getUrl($request, $media),
+            'file'   => $this->getUrl($requestStack, $media),
             'title'  => $media->getMetadata('title'),
             'width'  => $media->getMetadata('width'),
             'height' => $media->getMetadata('height')

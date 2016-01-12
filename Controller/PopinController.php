@@ -119,7 +119,7 @@ class PopinController extends BaseController
         $provider = $this->getMediaProvider();
         $search   = $provider->getSearchData();
         $form     = $this->createForm($provider->getSearchFormType(), $search);
-        $form->handleRequest($request);
+        $form->handleRequest($requestStack);
 
         if ($form->isValid()) {
             $this->getSession()->set($provider->getSearchSessionKey(), $search->getSearchForSession());
@@ -225,7 +225,7 @@ class PopinController extends BaseController
         $form  = $this->createForm($provider->getFormType(), $media);
 
         if ($request->isMethod('POST')) {
-            $form->handleRequest($request);
+            $form->handleRequest($requestStack);
 
             if ($form->isValid()) {
                 $this->persistAndFlush($media);
