@@ -21,7 +21,7 @@ class MediasExtension extends \Twig_Extension
     /**
      * @var Request
      */
-    private $request;
+    private $requestStack;
 
     /**
      * @var AbstractMediaProvider
@@ -37,7 +37,7 @@ class MediasExtension extends \Twig_Extension
      */
     public function setRequestStack(RequestStack $requestStack)
     {
-        $this->request = $requestStack->getCurrentRequest();
+        $this->requestStack = $requestStack->getCurrentRequest();
 
         return $this;
     }

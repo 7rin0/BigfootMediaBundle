@@ -110,11 +110,11 @@ class PopinController extends BaseController
     /**
      * @Route("/popin/search", name="portfolio_search")
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \Symfony\Component\HttpFoundation\RequestStack $requestStack
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-    public function searchAction(Request $request)
+    public function searchAction(RequestStack $requestStack)
     {
         $provider = $this->getMediaProvider();
         $search   = $provider->getSearchData();
@@ -126,7 +126,7 @@ class PopinController extends BaseController
 
             $results = $provider->search($search, 0, $this->getElementsPerPage());
 
-            $selected = $request->get('ids', '');
+            $selected = $requestStack->getCurrentRequest()->get('ids', '');
             $selected = explode(';', $selected);
 
             $render = $this->render(
@@ -159,15 +159,15 @@ class PopinController extends BaseController
      * @Route("/popin/paginate", name="portfolio_popin_paginate")
      * @Method("POST")
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \Symfony\Component\HttpFoundation\RequestStack $requestStack
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-    public function paginateAction(Request $request)
+    public function paginateAction(RequestStack $requestStack)
     {
         $provider = $this->getMediaProvider();
-        $page     = $request->get('page', null);
-        $selected = $request->get('selected', '');
+        $page     = $requestStack->getCurrentRequest()->get('page', null);
+        $selected = $requestStack->getCurrentRequest()->get('selected', '');
         $selected = explode(';', $selected);
 
         if (empty($page)) {
@@ -208,12 +208,12 @@ class PopinController extends BaseController
      * @Method({"GET", "POST"})
      * @Template("BigfootMediaBundle:snippets:edit.html.twig")
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \Symfony\Component\HttpFoundation\RequestStack $requestStack
      * @param                                           $id
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function editAction(Request $request, $id)
+    public function editAction(RequestStack $requestStack, $id)
     {
         $provider = $this->getMediaProvider();
 
@@ -316,18 +316,18 @@ class PopinController extends BaseController
     /**
      * Handles upload
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \Symfony\Component\HttpFoundation\RequestStack $requestStack
      *
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Exception
      *
      * @Route("/upload", name="portfolio_upload")
      */
-    public function uploadAction(Request $request)
+    public function uploadAction(RequestStack $requestStack)
     {
         // retrieves the posted data, for reference
-        $file = $request->get('value');
-        $name = $request->get('name');
+        $file = $requestStack->getCurrentRequest()->get('value');
+        $name = $requestStack->getCurrentRequest()->get('name');
 
         $json = array(
             'name'    => $name,

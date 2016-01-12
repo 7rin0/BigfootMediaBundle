@@ -179,12 +179,12 @@ abstract class AbstractMediaProvider
     /**
      * Get url
      *
-     * @param  Request $request
+     * @param  RequestStack $requestStack
      * @param  mixed  $media
      *
      * @return string
      */
-    abstract public function getUrl(Request $request, $media);
+    abstract public function getUrl(RequestStack $requestStack, $media);
 
     /**
      * Get media details
@@ -193,7 +193,7 @@ abstract class AbstractMediaProvider
      *
      * @return array
      */
-    abstract public function getMediaDetails(Request $request, $media);
+    abstract public function getMediaDetails(RequestStack $requestStack, $media);
 
     /**
      * Get total

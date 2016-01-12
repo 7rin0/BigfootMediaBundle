@@ -41,7 +41,7 @@ class MediaController extends BaseController
      *
      * @Route("/tag/add", name="portfolio_tag_add")
      */
-    public function addTagAction(Request $request)
+    public function addTagAction(RequestStack $requestStack)
     {
         $em = $this->container->get('doctrine')->getManager();
 
@@ -63,10 +63,10 @@ class MediaController extends BaseController
     /**
      * @Route("/list-fields", name="portfolio_list_fields")
      */
-    public function listFieldsAction(Request $request)
+    public function listFieldsAction(RequestStack $requestStack)
     {
         $em = $this->container->get('doctrine')->getManager();
-        $table = $request->get('table', '');
+        $table = $requestStack->getCurrentRequest()->get('table', '');
 
         $query = $em->createQuery(
             'SELECT mu.column_ref
@@ -86,20 +86,20 @@ class MediaController extends BaseController
     /**
      * @Route("/ck/upload", name="bigfoot_media_upload", options={"expose"=true})
      */
-    public function ckUploadAction(Request $request)
+    public function ckUploadAction(RequestStack $requestStack)
     {
         $content = '';
         /** @var UploadedFile $file */
-        if ($file = $request->files->get('upload', false)) {
+        if ($file = $requestStack->getCurrentRequest()->files->get('upload', false)) {
             try {
                 $fileName = $file->getClientOriginalName();
                 $mimeType = $file->getMimeType();
                 $size = $file->getSize();
-                $absPath = sprintf('%s/%s', rtrim($this->getUploadDir(), '/'), $request->get('CKEditor'));
-                $relPath = sprintf('%s/%s', rtrim($this->getUploadDir(false), '/'), $request->get('CKEditor'));
+                $absPath = sprintf('%s/%s', rtrim($this->getUploadDir(), '/'), $requestStack->getCurrentRequest()->get('CKEditor'));
+                $relPath = sprintf('%s/%s', rtrim($this->getUploadDir(false), '/'), $requestStack->getCurrentRequest()->get('CKEditor'));
                 $file->move($absPath, $fileName);
                 $content = sprintf("window.parent.CKEDITOR.tools.callFunction(%s, '%s', '%s')",
-                    $request->get('CKEditorFuncNum'),
+                    $requestStack->getCurrentRequest()->get('CKEditorFuncNum'),
                     sprintf('%s/%s', $relPath, $fileName),
                     ''
                 );
