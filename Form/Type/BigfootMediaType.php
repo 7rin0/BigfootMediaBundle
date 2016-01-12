@@ -2,15 +2,13 @@
 
 namespace Bigfoot\Bundle\MediaBundle\Form\Type;
 
+use Bigfoot\Bundle\MediaBundle\Form\DataTransformer\MediaTransformer;
+use Bigfoot\Bundle\MediaBundle\Provider\Common\AbstractMediaProvider;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
-use Bigfoot\Bundle\MediaBundle\Form\DataTransformer\MediaTransformer;
-use Bigfoot\Bundle\MediaBundle\Provider\Common\AbstractMediaProvider;
 
 /**
  * Helper type allowing to use the media portfolio popin in a form to fill in a media field.

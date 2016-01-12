@@ -2,21 +2,19 @@
 
 namespace Bigfoot\Bundle\MediaBundle\Controller;
 
+use Bigfoot\Bundle\CoreBundle\Controller\BaseController;
 use Bigfoot\Bundle\MediaBundle\Entity\Media;
 use Bigfoot\Bundle\MediaBundle\Entity\MediaRepository;
 use Bigfoot\Bundle\MediaBundle\Event\PortfolioEvent;
 use Bigfoot\Bundle\MediaBundle\Provider\Common\AbstractMediaProvider;
-use Symfony\Component\EventDispatcher\GenericEvent;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\JsonResponse;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
-
-use Bigfoot\Bundle\CoreBundle\Controller\BaseController;
+use Symfony\Component\EventDispatcher\GenericEvent;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Bigfoot PopinController
@@ -118,6 +116,7 @@ class PopinController extends BaseController
     {
         $provider = $this->getMediaProvider();
         $search   = $provider->getSearchData();
+        $requestStack = $requestStack->getCurrentRequest();
         $form     = $this->createForm($provider->getSearchFormType(), $search);
         $form->handleRequest($requestStack);
 
@@ -126,7 +125,7 @@ class PopinController extends BaseController
 
             $results = $provider->search($search, 0, $this->getElementsPerPage());
 
-            $selected = $requestStack->getCurrentRequest()->get('ids', '');
+            $selected = $requestStack->get('ids', '');
             $selected = explode(';', $selected);
 
             $render = $this->render(
@@ -166,8 +165,9 @@ class PopinController extends BaseController
     public function paginateAction(RequestStack $requestStack)
     {
         $provider = $this->getMediaProvider();
-        $page     = $requestStack->getCurrentRequest()->get('page', null);
-        $selected = $requestStack->getCurrentRequest()->get('selected', '');
+        $requestStack = $requestStack->getCurrentRequest();
+        $page     = $requestStack->get('page', null);
+        $selected = $requestStack->get('selected', '');
         $selected = explode(';', $selected);
 
         if (empty($page)) {
@@ -216,6 +216,7 @@ class PopinController extends BaseController
     public function editAction(RequestStack $requestStack, $id)
     {
         $provider = $this->getMediaProvider();
+        $requestStack = $requestStack->getCurrentRequest();
 
         if (!$provider->getConfiguration('edit', false)) {
             return new Response();
@@ -224,7 +225,7 @@ class PopinController extends BaseController
         $media = $provider->find($id);
         $form  = $this->createForm($provider->getFormType(), $media);
 
-        if ($request->isMethod('POST')) {
+        if ($requestStack->isMethod('POST')) {
             $form->handleRequest($requestStack);
 
             if ($form->isValid()) {
@@ -326,8 +327,9 @@ class PopinController extends BaseController
     public function uploadAction(RequestStack $requestStack)
     {
         // retrieves the posted data, for reference
-        $file = $requestStack->getCurrentRequest()->get('value');
-        $name = $requestStack->getCurrentRequest()->get('name');
+        $requestStack = $requestStack->getCurrentRequest();
+        $file = $requestStack->get('value');
+        $name = $requestStack->get('name');
 
         $json = array(
             'name'    => $name,

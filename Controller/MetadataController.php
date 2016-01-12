@@ -2,13 +2,11 @@
 
 namespace Bigfoot\Bundle\MediaBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
+use Bigfoot\Bundle\CoreBundle\Controller\CrudController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
-
-use Bigfoot\Bundle\CoreBundle\Controller\CrudController;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Metadata controller.
@@ -56,7 +54,7 @@ class MetadataController extends CrudController
      */
     public function indexAction(RequestStack $requestStack)
     {
-        return $this->doIndex($requestStack);
+        return $this->doIndex($requestStack->getCurrentRequest());
     }
 
     /**
@@ -67,7 +65,7 @@ class MetadataController extends CrudController
     public function newAction(RequestStack $requestStack)
     {
 
-        return $this->doNew($requestStack);
+        return $this->doNew($requestStack->getCurrentRequest());
     }
 
     /**
@@ -77,7 +75,7 @@ class MetadataController extends CrudController
      */
     public function editAction(RequestStack $requestStack, $id)
     {
-        return $this->doEdit($requestStack, $id);
+        return $this->doEdit($requestStack->getCurrentRequest(), $id);
     }
 
     /**
@@ -88,6 +86,6 @@ class MetadataController extends CrudController
      */
     public function deleteAction(RequestStack $requestStack, $id)
     {
-        return $this->doDelete($requestStack, $id);
+        return $this->doDelete($requestStack->getCurrentRequest(), $id);
     }
 }

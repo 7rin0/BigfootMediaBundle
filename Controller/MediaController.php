@@ -2,19 +2,18 @@
 
 namespace Bigfoot\Bundle\MediaBundle\Controller;
 
-use Bigfoot\Bundle\MediaBundle\Entity\MediaRepository;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
-use Doctrine\ORM\AbstractQuery;
-
 use Bigfoot\Bundle\CoreBundle\Controller\BaseController;
 use Bigfoot\Bundle\CoreBundle\Entity\Tag;
 use Bigfoot\Bundle\MediaBundle\Entity\Media;
+use Bigfoot\Bundle\MediaBundle\Entity\MediaRepository;
+use Doctrine\ORM\AbstractQuery;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Bigfoot MediaController. Implements the routes necessary to display the media management module.
@@ -44,9 +43,10 @@ class MediaController extends BaseController
     public function addTagAction(RequestStack $requestStack)
     {
         $em = $this->container->get('doctrine')->getManager();
+        $requestStack = $requestStack->getCurrentRequest();
 
         $tag = new Tag();
-        $tag->setName($request->get('tag'));
+        $tag->setName($requestStack->get('tag'));
 
         $em->persist($tag);
         $em->flush();
@@ -67,6 +67,7 @@ class MediaController extends BaseController
     {
         $em = $this->container->get('doctrine')->getManager();
         $table = $requestStack->getCurrentRequest()->get('table', '');
+        $requestStack = $requestStack->getCurrentRequest();
 
         $query = $em->createQuery(
             'SELECT mu.column_ref

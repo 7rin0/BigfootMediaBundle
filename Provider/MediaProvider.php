@@ -4,9 +4,8 @@ namespace Bigfoot\Bundle\MediaBundle\Provider;
 
 use Bigfoot\Bundle\MediaBundle\Entity\Media;
 use Bigfoot\Bundle\MediaBundle\Form\PortfolioSearchData;
-use Symfony\Component\HttpFoundation\Request;
-
 use Bigfoot\Bundle\MediaBundle\Provider\Common\AbstractMediaProvider;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Media provider
@@ -92,7 +91,7 @@ class MediaProvider extends AbstractMediaProvider
     public function getMediaDetails(RequestStack $requestStack, $media)
     {
         return  array(
-            'file'   => $this->getUrl($requestStack, $media),
+            'file'   => $this->getUrl($requestStack->getCurrentRequest(), $media),
             'title'  => $media->getMetadata('title'),
             'width'  => $media->getMetadata('width'),
             'height' => $media->getMetadata('height')

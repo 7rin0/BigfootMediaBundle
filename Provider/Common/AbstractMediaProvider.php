@@ -2,15 +2,12 @@
 
 namespace Bigfoot\Bundle\MediaBundle\Provider\Common;
 
+use Bigfoot\Bundle\CoreBundle\Theme\Theme;
 use Bigfoot\Bundle\MediaBundle\Form\Common\AbstractPortfolioSearchData;
 use Doctrine\ORM\EntityManager;
-
 use Doctrine\ORM\EntityRepository;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\Session;
-
-use Bigfoot\Bundle\CoreBundle\Theme\Theme;
 
 /**
  * Abstract media provider

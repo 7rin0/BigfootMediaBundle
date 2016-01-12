@@ -2,14 +2,10 @@
 
 namespace Bigfoot\Bundle\MediaBundle\Twig;
 
-use Doctrine\ORM\EntityManager;
+use Bigfoot\Bundle\MediaBundle\Provider\Common\AbstractMediaProvider;
 use Doctrine\ORM\Query;
-
-use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\PropertyAccess\PropertyAccess;
-
-use Bigfoot\Bundle\MediaBundle\Provider\Common\AbstractMediaProvider;
 
 /**
  * Helper filter facilitating the display of an image from the portfolio.

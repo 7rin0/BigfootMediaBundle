@@ -2,8 +2,6 @@
 
 namespace Bigfoot\Bundle\MediaBundle\Form;
 
-use Doctrine\ORM\AbstractQuery;
-use Doctrine\ORM\EntityManager;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;

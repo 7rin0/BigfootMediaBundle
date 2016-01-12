@@ -4,8 +4,8 @@ namespace Bigfoot\Bundle\MediaBundle\Entity;
 
 use Bigfoot\Bundle\MediaBundle\Entity\Translation\MetadataTranslation;
 use Doctrine\Common\Collections\ArrayCollection;
-use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Metadata

@@ -3,11 +3,8 @@
 namespace Bigfoot\Bundle\MediaBundle\Form\DataTransformer;
 
 use AppBundle\Entity\Issue;
-use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\Form\DataTransformerInterface;
-use Symfony\Component\Form\Exception\TransformationFailedException;
-
 use Bigfoot\Bundle\MediaBundle\Provider\Common\AbstractMediaProvider;
+use Symfony\Component\Form\DataTransformerInterface;
 
 /**
  * Media transformer
