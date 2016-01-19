@@ -41,8 +41,8 @@ class MediaController extends BaseController
      */
     public function addTagAction()
     {
-        $em = $this->container->get('doctrine')->getManager();
-        $requestStack = $requestStack->getCurrentRequest();
+        $em = $this->get('doctrine')->getManager();
+        $requestStack = $this->getRequestStack();
 
         $tag = new Tag();
         $tag->setName($requestStack->get('tag'));
@@ -52,7 +52,7 @@ class MediaController extends BaseController
 
         return new Response(json_encode(
             array(
-                'html' => $this->container->get('twig')->render('BigfootMediaBundle:snippets:tag_option.html.twig', array(
+                'html' => $this->get('twig')->render('BigfootMediaBundle:snippets:tag_option.html.twig', array(
                         'tag' => $tag,
                 )),
             )
@@ -64,9 +64,9 @@ class MediaController extends BaseController
      */
     public function listFieldsAction()
     {
-        $em = $this->container->get('doctrine')->getManager();
-        $table = $requestStack->getCurrentRequest()->get('table', '');
-        $requestStack = $requestStack->getCurrentRequest();
+        $em = $this->get('doctrine')->getManager();
+        $table = $this->getRequestStack()->get('table', '');
+        $requestStack = $this->getRequestStack();
 
         $query = $em->createQuery(
             'SELECT mu.column_ref
@@ -90,16 +90,16 @@ class MediaController extends BaseController
     {
         $content = '';
         /** @var UploadedFile $file */
-        if ($file = $requestStack->getCurrentRequest()->files->get('upload', false)) {
+        if ($file = $this->getRequestStack()->files->get('upload', false)) {
             try {
                 $fileName = $file->getClientOriginalName();
                 $mimeType = $file->getMimeType();
                 $size = $file->getSize();
-                $absPath = sprintf('%s/%s', rtrim($this->getUploadDir(), '/'), $requestStack->getCurrentRequest()->get('CKEditor'));
-                $relPath = sprintf('%s/%s', rtrim($this->getUploadDir(false), '/'), $requestStack->getCurrentRequest()->get('CKEditor'));
+                $absPath = sprintf('%s/%s', rtrim($this->getUploadDir(), '/'), $this->getRequestStack()->get('CKEditor'));
+                $relPath = sprintf('%s/%s', rtrim($this->getUploadDir(false), '/'), $this->getRequestStack()->get('CKEditor'));
                 $file->move($absPath, $fileName);
                 $content = sprintf("window.parent.CKEDITOR.tools.callFunction(%s, '%s', '%s')",
-                    $requestStack->getCurrentRequest()->get('CKEditorFuncNum'),
+                    $this->getRequestStack()->get('CKEditorFuncNum'),
                     sprintf('%s/%s', $relPath, $fileName),
                     ''
                 );
@@ -142,6 +142,6 @@ class MediaController extends BaseController
             $dir .= $this->get('kernel')->getRootDir() . '/../web';
         }
 
-        return rtrim($dir, '/').sprintf('/%s/%s', trim($this->container->getParameter('bigfoot.core.upload_dir'), '/'), trim($this->container->getParameter('bigfoot.media.portfolio_dir'), '/'));
+        return rtrim($dir, '/').sprintf('/%s/%s', trim($this->getParameter('bigfoot.core.upload_dir'), '/'), trim($this->getParameter('bigfoot.media.portfolio_dir'), '/'));
     }
 }

@@ -31,9 +31,9 @@ class PopinController extends BaseController
      */
     protected function getMediaProvider()
     {
-        $provider = $this->container->getParameter('bigfoot_media.provider');
+        $provider = $this->getParameter('bigfoot_media.provider');
 
-        if (!empty($provider) && $this->container->has($provider)) {
+        if (!empty($provider) && $this->has($provider)) {
             return $this->get($provider);
         }
 
@@ -47,7 +47,7 @@ class PopinController extends BaseController
      */
     protected function getElementsPerPage()
     {
-        return $this->container->getParameter('bigfoot_media.pagination_per_page');
+        return $this->getParameter('bigfoot_media.pagination_per_page');
     }
 
     /**
@@ -115,7 +115,7 @@ class PopinController extends BaseController
     {
         $provider = $this->getMediaProvider();
         $search   = $provider->getSearchData();
-        $requestStack = $requestStack->getCurrentRequest();
+        $requestStack = $this->getRequestStack();
         $form     = $this->createForm($provider->getSearchFormType(), $search);
         $form->handleRequest($requestStack);
 
@@ -164,7 +164,7 @@ class PopinController extends BaseController
     public function paginateAction()
     {
         $provider = $this->getMediaProvider();
-        $requestStack = $requestStack->getCurrentRequest();
+        $requestStack = $this->getRequestStack();
         $page     = $requestStack->get('page', null);
         $selected = $requestStack->get('selected', '');
         $selected = explode(';', $selected);
@@ -215,7 +215,7 @@ class PopinController extends BaseController
     public function editAction($id)
     {
         $provider = $this->getMediaProvider();
-        $requestStack = $requestStack->getCurrentRequest();
+        $requestStack = $this->getRequestStack();
 
         if (!$provider->getConfiguration('edit', false)) {
             return new Response();
@@ -326,7 +326,7 @@ class PopinController extends BaseController
     public function uploadAction()
     {
         // retrieves the posted data, for reference
-        $requestStack = $requestStack->getCurrentRequest();
+        $requestStack = $this->getRequestStack();
         $file = $requestStack->get('value');
         $name = $requestStack->get('name');
 
@@ -345,7 +345,7 @@ class PopinController extends BaseController
         $media = new Media();
 
         // generate new name, relative and absolute path
-        $fileManager  = $this->container->get('bigfoot_core.manager.file_manager');
+        $fileManager  = $this->get('bigfoot_core.manager.file_manager');
         $name         = $fileManager->sanitizeName($name);
         $image        = uniqid().'_'.$name;
         $directory    = $this->getUploadDir();
@@ -357,7 +357,7 @@ class PopinController extends BaseController
         }
 
         if (file_put_contents($absolutePath, $decodedData)) {
-            $relativePath = $this->container->getParameter('bigfoot.core.upload_dir').$this->container->getParameter('bigfoot.media.portfolio_dir').$image;
+            $relativePath = $this->getParameter('bigfoot.core.upload_dir').$this->getParameter('bigfoot.media.portfolio_dir').$image;
             $imageInfos   = getimagesize($absolutePath);
             $media
                 ->setType($imageInfos['mime'])
@@ -425,8 +425,8 @@ class PopinController extends BaseController
 
         return rtrim($dir, '/').sprintf(
             '/%s/%s',
-            trim($this->container->getParameter('bigfoot.core.upload_dir'), '/'),
-            trim($this->container->getParameter('bigfoot.media.portfolio_dir'), '/')
+            trim($this->getParameter('bigfoot.core.upload_dir'), '/'),
+            trim($this->getParameter('bigfoot.media.portfolio_dir'), '/')
         );
     }
 }
