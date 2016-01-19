@@ -4,6 +4,7 @@ namespace Bigfoot\Bundle\MediaBundle\Form;
 
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -52,7 +53,7 @@ class MediaType extends AbstractType
 
                     $form->add(
                         'metadatas',
-                        'collection',
+                        CollectionType::class,
                         array(
                             'label' => ' ',
                             'type' => new MediaMetadataType(),
