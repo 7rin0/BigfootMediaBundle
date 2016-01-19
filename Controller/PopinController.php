@@ -112,7 +112,7 @@ class PopinController extends BaseController
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-    public function searchAction(RequestStack $requestStack)
+    public function searchAction()
     {
         $provider = $this->getMediaProvider();
         $search   = $provider->getSearchData();
@@ -162,7 +162,7 @@ class PopinController extends BaseController
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-    public function paginateAction(RequestStack $requestStack)
+    public function paginateAction()
     {
         $provider = $this->getMediaProvider();
         $requestStack = $requestStack->getCurrentRequest();
@@ -213,7 +213,7 @@ class PopinController extends BaseController
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function editAction(RequestStack $requestStack, $id)
+    public function editAction($id)
     {
         $provider = $this->getMediaProvider();
         $requestStack = $requestStack->getCurrentRequest();
@@ -324,7 +324,7 @@ class PopinController extends BaseController
      *
      * @Route("/upload", name="portfolio_upload")
      */
-    public function uploadAction(RequestStack $requestStack)
+    public function uploadAction()
     {
         // retrieves the posted data, for reference
         $requestStack = $requestStack->getCurrentRequest();

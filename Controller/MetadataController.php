@@ -52,9 +52,9 @@ class MetadataController extends CrudController
      * @param RequestStack $requestStack
      * @return array
      */
-    public function indexAction(RequestStack $requestStack)
+    public function indexAction()
     {
-        return $this->doIndex($requestStack->getCurrentRequest());
+        return $this->doIndex();
     }
 
     /**
@@ -62,10 +62,10 @@ class MetadataController extends CrudController
      *
      * @Route("/new", name="admin_portfolio_metadata_new")
      */
-    public function newAction(RequestStack $requestStack)
+    public function newAction()
     {
 
-        return $this->doNew($requestStack->getCurrentRequest());
+        return $this->doNew();
     }
 
     /**
@@ -73,7 +73,7 @@ class MetadataController extends CrudController
      *
      * @Route("/{id}/edit", name="admin_portfolio_metadata_edit")
      */
-    public function editAction(RequestStack $requestStack, $id)
+    public function editAction($id)
     {
         return $this->doEdit($requestStack->getCurrentRequest(), $id);
     }
@@ -84,7 +84,7 @@ class MetadataController extends CrudController
      * @Route("/{id}", name="admin_portfolio_metadata_delete")
      * @Method("GET|DELETE")
      */
-    public function deleteAction(RequestStack $requestStack, $id)
+    public function deleteAction($id)
     {
         return $this->doDelete($requestStack->getCurrentRequest(), $id);
     }

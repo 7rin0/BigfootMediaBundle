@@ -182,7 +182,7 @@ abstract class AbstractMediaProvider
      *
      * @return string
      */
-    abstract public function getUrl(RequestStack $requestStack, $media);
+    abstract public function getUrl($media);
 
     /**
      * Get media details
@@ -191,7 +191,7 @@ abstract class AbstractMediaProvider
      *
      * @return array
      */
-    abstract public function getMediaDetails(RequestStack $requestStack, $media);
+    abstract public function getMediaDetails($media);
 
     /**
      * Get total

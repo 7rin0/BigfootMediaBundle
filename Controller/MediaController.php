@@ -40,7 +40,7 @@ class MediaController extends BaseController
      *
      * @Route("/tag/add", name="portfolio_tag_add")
      */
-    public function addTagAction(RequestStack $requestStack)
+    public function addTagAction()
     {
         $em = $this->container->get('doctrine')->getManager();
         $requestStack = $requestStack->getCurrentRequest();
@@ -63,7 +63,7 @@ class MediaController extends BaseController
     /**
      * @Route("/list-fields", name="portfolio_list_fields")
      */
-    public function listFieldsAction(RequestStack $requestStack)
+    public function listFieldsAction()
     {
         $em = $this->container->get('doctrine')->getManager();
         $table = $requestStack->getCurrentRequest()->get('table', '');
@@ -87,7 +87,7 @@ class MediaController extends BaseController
     /**
      * @Route("/ck/upload", name="bigfoot_media_upload", options={"expose"=true})
      */
-    public function ckUploadAction(RequestStack $requestStack)
+    public function ckUploadAction()
     {
         $content = '';
         /** @var UploadedFile $file */

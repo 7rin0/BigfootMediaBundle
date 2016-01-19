@@ -76,7 +76,7 @@ class MediaProvider extends AbstractMediaProvider
      *
      * @return string
      */
-    public function getUrl(RequestStack $requestStack, $media)
+    public function getUrl($media)
     {
         return sprintf('%s/%s', $requestStack->getCurrentRequest()->getBasePath(), $media->getFile());
     }
@@ -88,7 +88,7 @@ class MediaProvider extends AbstractMediaProvider
      *
      * @return array
      */
-    public function getMediaDetails(RequestStack $requestStack, $media)
+    public function getMediaDetails($media)
     {
         return  array(
             'file'   => $this->getUrl($requestStack->getCurrentRequest(), $media),
