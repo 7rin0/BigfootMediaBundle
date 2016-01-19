@@ -2,6 +2,7 @@
 
 namespace Bigfoot\Bundle\MediaBundle\Form;
 
+use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -33,7 +34,7 @@ class MediaMetadataType extends AbstractType
 
                     $form->add(
                         'value',
-                        'text',
+                        TextType::class,
                         array(
                             'label' => $data->getType()
                         )
