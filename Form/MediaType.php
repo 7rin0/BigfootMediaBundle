@@ -56,8 +56,8 @@ class MediaType extends AbstractType
                         CollectionType::class,
                         array(
                             'label' => ' ',
-                            'type' => new MediaMetadataType(),
-                            'options' => array(
+                            'entry_type' => new MediaMetadataType(),
+                            'entry_options' => array(
                                 'required' => false,
                                 'attr' => array(
                                     'class' => 'metadatas'
