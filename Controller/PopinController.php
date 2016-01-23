@@ -90,7 +90,7 @@ class PopinController extends BaseController
 
         $search = $provider->getSearchData();
 
-        $form = $this->createForm(get_class($provider->getSearchFormType()), $search); // TODO
+        $form = $this->createForm($provider->getSearchFormType(), $search); // TODO
 
         return array(
             'allMedias'      => $allMedias,
@@ -116,7 +116,7 @@ class PopinController extends BaseController
         $provider = $this->getMediaProvider();
         $search   = $provider->getSearchData();
         $requestStack = $this->getRequestStack();
-        $form     = $this->createForm(get_class($provider->getSearchFormType()), $search);
+        $form     = $this->createForm($provider->getSearchFormType(), $search);
         $form->handleRequest($requestStack);
 
         if ($form->isValid()) {

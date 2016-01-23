@@ -4,6 +4,7 @@ namespace Bigfoot\Bundle\MediaBundle\Provider;
 
 use Bigfoot\Bundle\MediaBundle\Entity\Media;
 use Bigfoot\Bundle\MediaBundle\Form\PortfolioSearchData;
+use Bigfoot\Bundle\MediaBundle\Form\PortfolioSearchType;
 use Bigfoot\Bundle\MediaBundle\Provider\Common\AbstractMediaProvider;
 use Symfony\Component\HttpFoundation\RequestStack;
 
@@ -270,7 +271,7 @@ class MediaProvider extends AbstractMediaProvider
      */
     public function getSearchFormType()
     {
-        return 'bigfoot_portfolio_search';
+        return PortfolioSearchType::class;
     }
 
     /**

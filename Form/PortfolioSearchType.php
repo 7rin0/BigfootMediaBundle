@@ -31,12 +31,4 @@ class PortfolioSearchType extends AbstractType
             )
         );
     }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'bigfoot_portfolio_search';
-    }
 }
