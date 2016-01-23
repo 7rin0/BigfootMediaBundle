@@ -222,7 +222,7 @@ class PopinController extends BaseController
         }
 
         $media = $provider->find($id);
-        $form  = $this->createForm(get_class($this->getFormType()), $media);
+        $form  = $this->createForm($this->getFormType(), $media);
 
         if ($requestStack->isMethod('POST')) {
             $form->handleRequest($requestStack);

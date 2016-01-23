@@ -85,19 +85,5 @@ class BigfootMediaType extends AbstractType
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getParent()
-    {
-        return 'form';
-    }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return 'bigfoot_media';
-    }
 }

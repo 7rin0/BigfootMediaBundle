@@ -2,6 +2,7 @@
 
 namespace Bigfoot\Bundle\MediaBundle\DependencyInjection;
 
+use Bigfoot\Bundle\MediaBundle\Form\Type\BigfootMediaType;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -18,7 +19,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('bigfoot_media');
+        $rootNode = $treeBuilder->root(BigfootMediaType::class);
 
         $rootNode
             ->children()
