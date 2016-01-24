@@ -35,12 +35,4 @@ class MetadataType extends AbstractType
             'data_class' => 'Bigfoot\Bundle\MediaBundle\Entity\Metadata'
         ));
     }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'bigfoot_bundle_mediabundle_metadatatype';
-    }
 }
