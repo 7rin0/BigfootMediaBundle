@@ -87,12 +87,4 @@ class MediaType extends AbstractType
             )
         );
     }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'bigfoot_media_mediatype';
-    }
 }

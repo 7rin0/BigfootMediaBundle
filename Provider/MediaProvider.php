@@ -3,6 +3,7 @@
 namespace Bigfoot\Bundle\MediaBundle\Provider;
 
 use Bigfoot\Bundle\MediaBundle\Entity\Media;
+use Bigfoot\Bundle\MediaBundle\Form\MediaType;
 use Bigfoot\Bundle\MediaBundle\Form\PortfolioSearchData;
 use Bigfoot\Bundle\MediaBundle\Form\PortfolioSearchType;
 use Bigfoot\Bundle\MediaBundle\Provider\Common\AbstractMediaProvider;
@@ -31,7 +32,7 @@ class MediaProvider extends AbstractMediaProvider
      */
     public function getFormType()
     {
-        return 'bigfoot_media_mediatype';
+        return MediaType::class;
     }
 
     /**
