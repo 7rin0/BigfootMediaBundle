@@ -1,15 +1,15 @@
 parameters:
-    bigfoot.form.type.bigfoot_media.class: Bigfoot\Bundle\MediaBundle\Form\Type\BigfootMediaType
+    bigfoot.form.type.bigfoot_media.class: 'Bigfoot\Bundle\MediaBundle\Form\Type\BigfootMediaType'
 
 services:
     form.type.portfolio_search:
-        class: Bigfoot\Bundle\MediaBundle\Form\PortfolioSearchType
+        class: 'Bigfoot\Bundle\MediaBundle\Form\PortfolioSearchType'
         tags:
             - { name: form.type }
 
     bigfoot.form.type.bigfoot_media_mediatype:
-        class: Bigfoot\Bundle\MediaBundle\Form\MediaType
-        arguments: [ '@doctrine.orm.entity_manager' ]
+        class: 'Bigfoot\Bundle\MediaBundle\Form\MediaType'
+        arguments: [ '@doctrine.orm.default_entity_manager' ]
         tags:
             - { name: form.type }
 
@@ -21,7 +21,7 @@ services:
             - { name: form.type }
 
     bigfoot.twig.medias_extension:
-        class: Bigfoot\Bundle\MediaBundle\Twig\MediasExtension
+        class: 'Bigfoot\Bundle\MediaBundle\Twig\MediasExtension'
         calls:
             - ['setProvider', ['@bigfoot_media.provider.media']]
             - ['setRequestStack', ['@request_stack']]
@@ -30,7 +30,7 @@ services:
 
     # Menu Subscriber
     bigfoot_media.subscriber.menu:
-        class: Bigfoot\Bundle\MediaBundle\Subscriber\MenuSubscriber
+        class: 'Bigfoot\Bundle\MediaBundle\Subscriber\MenuSubscriber'
         arguments:
             - '@security.token_storage'
         tags:
@@ -38,15 +38,15 @@ services:
 
     # Media Provider
     bigfoot_media.provider.abstract:
-        class: Bigfoot\Bundle\MediaBundle\Provider\Common\AbstractMediaProvider
+        class: 'Bigfoot\Bundle\MediaBundle\Provider\Common\AbstractMediaProvider'
         abstract: true
         calls:
-            - ['setEntityManager', ['@doctrine.orm.entity_manager']]
+            - ['setEntityManager', ['@doctrine.orm.default_entity_manager']]
             - ['setTheme', ['@bigfoot.theme']]
             - ['setSession', ['@session']]
 
     bigfoot_media.provider.default:
-        class: Bigfoot\Bundle\MediaBundle\Provider\MediaProvider
+        class: 'Bigfoot\Bundle\MediaBundle\Provider\MediaProvider'
         parent: bigfoot_media.provider.abstract
 
     bigfoot_media.provider.media:
