@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>Media Metadatas</source>
+                <target>Données associées aux médias</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>Add a metadata</source>
+                <target>Ajouter une donnée</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>Media Metadata creation</source>
+                <target>Création d'une donnée associée aux médias</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>Media Metadata edit</source>
+                <target>Edition d'une donnée associée aux médias</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>Thumbnail</source>
+                <target>Miniature</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>Upload or select medias</source>
+                <target>Télécharger ou sélectionner des médias</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>Associated medias</source>
+                <target>Médias sélectionnés</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>Download new medias</source>
+                <target>Télécharger des médias</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>Portfolio</source>
+                <target>Portfolio</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>Search term</source>
+                <target>Mots clefs</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>Drag and drop your medias here</source>
+                <target>Déposez vos médias ici</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>Metadatas admin</source>
+                <target>Administration des metadata</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>Metadata edit</source>
+                <target>Edition d'une metadata</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>Metadata creation</source>
+                <target>Création d'une metadata</target>
+            </trans-unit>
+            <trans-unit id="15">
+                <source>Metadata management</source>
+                <target>Gestion des metadatas</target>
+            </trans-unit>
+            <trans-unit id="16">
+                <source>Drag and drop your medias here</source>
+                <target>Déplacez vos images ici</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
