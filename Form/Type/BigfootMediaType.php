@@ -5,6 +5,7 @@ namespace Bigfoot\Bundle\MediaBundle\Form\Type;
 use Bigfoot\Bundle\MediaBundle\Form\DataTransformer\MediaTransformer;
 use Bigfoot\Bundle\MediaBundle\Provider\Common\AbstractMediaProvider;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
@@ -60,7 +61,7 @@ class BigfootMediaType extends AbstractType
         $view->vars = array_replace(
             $view->vars,
             array(
-                'type'  => 'file',
+                'type'  => FileType::class,
             )
         );
     }
