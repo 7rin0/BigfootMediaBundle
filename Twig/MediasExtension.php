@@ -15,7 +15,7 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
 class MediasExtension extends \Twig_Extension
 {
     /**
-     * @var Request
+     * @var
      */
     private $requestStack;
 
@@ -88,7 +88,7 @@ class MediasExtension extends \Twig_Extension
 
             if ($ids) {
                 foreach ($results as $key => $media) {
-                    $orderedMedias[$key] = $this->provider->getMediaDetails($this->request, $media);
+                    $orderedMedias[$key] = $this->provider->getMediaDetails($this->requestStack, $media);
                 }
             }
         }
@@ -147,7 +147,7 @@ class MediasExtension extends \Twig_Extension
                         continue;
                     }
 
-                    $orderedMedias[$media->getId()] = $this->provider->getUrl($this->request, $media);
+                    $orderedMedias[$media->getId()] = $this->provider->getUrl($this->requestStack, $media);
                 }
             }
         }

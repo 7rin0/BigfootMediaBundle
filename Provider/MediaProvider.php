@@ -16,6 +16,16 @@ use Symfony\Component\HttpFoundation\RequestStack;
  */
 class MediaProvider extends AbstractMediaProvider
 {
+    protected $requestStack;
+
+    /**
+     * @param RequestStack $requestStack
+     */
+    public function __construct(RequestStack $requestStack)
+    {
+        $this->requestStack = $requestStack->getCurrentRequest();
+    }
+
     /**
      * Get class name
      *
@@ -80,7 +90,8 @@ class MediaProvider extends AbstractMediaProvider
      */
     public function getUrl($media)
     {
-        return sprintf('%s/%s', $this->getRequestStack()->getBasePath(), $media->getFile());
+        dump($media);
+        return sprintf('%s/%s', $this->requestStack->getBasePath(), $media->getFile());
     }
 
     /**
@@ -93,7 +104,7 @@ class MediaProvider extends AbstractMediaProvider
     public function getMediaDetails($media)
     {
         return  array(
-            'file'   => $this->getUrl($this->getRequestStack(), $media),
+            'file'   => $this->getUrl($this->requestStack, $media),
             'title'  => $media->getMetadata('title'),
             'width'  => $media->getMetadata('width'),
             'height' => $media->getMetadata('height')

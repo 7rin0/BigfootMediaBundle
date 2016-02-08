@@ -48,6 +48,7 @@ services:
     bigfoot_media.provider.default:
         class: 'Bigfoot\Bundle\MediaBundle\Provider\MediaProvider'
         parent: bigfoot_media.provider.abstract
+        arguments: [ '@request_stack' ]
 
     bigfoot_media.provider.media:
         alias: bigfoot_media.provider.default
